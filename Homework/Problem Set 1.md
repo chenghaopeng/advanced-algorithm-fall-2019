@@ -124,7 +124,7 @@ Given an efficient randomized algorithm with bounded one-side error (false posit
 >
 > 
 >
-> if TreeHash(root of $T_1$) = TreeHash(root of $T_2$)
+> if TreeHash(root of $T_1$) = TreeHash(root of $T_2$) 
 >
 > ​	return "yes"
 >
@@ -146,7 +146,7 @@ Design a randomized algorithm to decide if an integer sequence ${\displaystyle a
 >
 > 设$h_1,h_2,\ldots,h_k : \mathbb Z \rightarrow [m]$是均匀独立随机哈希函数
 >
-> $Hash[k][m]$是一个$k \times m$的二维布尔数组，初识全为0，构造方式如下
+> $Hash[k][m]$是一个$k \times m$的二维布尔数组，初始全为0，构造方式如下
 >
 > for each $a$ in $S_a$
 >
@@ -169,3 +169,7 @@ Design a randomized algorithm to decide if an integer sequence ${\displaystyle a
 当$S_a$是$S_b$的排列时，总是返回"yes"，所以总是正确的答案。
 
 当$S_a$不是$S_b$的排列时，可能会返回"yes"（假正）。
+
+对于特定的哈希函数$h_k$，数组$Hash[k]$中至多有$n$个元素为1，且共有$m$个元素，则$Pr[\forall 1 \leq i \leq m,Hash[k][i]=1]\leq\frac{n}{m}$。
+
+$Pr[错误]=Pr[假正]=Pr[\forall 1 \leq i \leq n, \forall 1 \leq j \leq k,Hash[j][h_j{(b_i)}]=1]\leq (\frac{n}{m})^{nk}$
