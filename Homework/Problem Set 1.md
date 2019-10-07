@@ -58,3 +58,83 @@ We sample a random subset ${\displaystyle S\in {\mathcal {F}}}$ uniformly at ran
 
 - Let ${\displaystyle {\mathcal {R}}(\cdot )}$ denote such a random source that given any ${\displaystyle 0\leq p\leq 1}$, ${\displaystyle {\mathcal {R}}(p)}$ returns an independent random sample ${\displaystyle X\in \{0,1\}}$ such that ${\displaystyle \Pr[X=1]=p}$. Give an algorithm that uses ${\displaystyle {\mathcal {R}}(\cdot )}$ as a subroutine to generate random subset ${\displaystyle S\in {\mathcal {F}}}$ uniformly at random. Prove the correctness of your algorithm. Analyze the number of times that the random sources is called by the algorithm.
 
+#### 回答
+
+**第一问**
+
+$\displaystyle |E(S,T)|=\sum_{uv \in E}{I[u \in S \ and \ v \in T]}$，其中$I[u \in S \ and \ v \in T]$是指示事件$u \in S \ and \ v \in T$是否发生的布尔随机变量。
+
+根据线性期望，$\displaystyle \mathbb E [|E(S,T)|]=\sum_{uv \in E}{\mathbb E[I[u \in S \ and \ v \in T]]}\\=\sum_{uv \in E}{Pr[(u \in S \ and \ v \in T) \ or \ (u \in T \ and \ v \in S)]}\\=\sum_{uv \in E}{\frac{1}{4}*2}\\=\frac{|E|}{2}$
+
+**第二问**
+
+> **算法**
+>
+> const $V=\{v_1,v_2,...,v_n\}$
+>
+> let $t=log_{2}n$
+>
+> initialize $S=\phi$
+>
+> while $|S|<\frac{n}{2}$
+>
+> ​	let $\vec{x}=(x_1,x_2,...,x_t)=\{\mathcal R(\frac{1}{2})\}^t$
+>
+> ​	calculate $k=\sum_{i=1}^{t}{x_i * 2^{i-1}}$
+>
+> ​	$v_k$ joins $S$
+
+每次产生一个$n$以内的随机数$k$，将$v_k$加入到$S$中。
+
+若之前$v_k \in S$则$|S|$不会改变，若之前$v_k \notin S$则$|S|+1$，直到$|S|=\frac{n}{2}$。
+
+每次产生随机数$k$需要调用$t=log_2{n}$次$\mathcal R(\cdot)$，总共需要产生至少$\frac{n}{2}$次随机数，所以$\mathcal R(\cdot)$的调用次数至少为$\frac{n}{2} \cdot t=\frac{n \cdot log_2{n}}{2}$次。
+
+## Problem 3
+
+Two rooted trees ${\displaystyle T_{1}}$ and ${\displaystyle T_{2}}$ are said to be **isomorphic** if there exists a bijection ${\displaystyle \phi }$ that maps vertices of ${\displaystyle T_{1}}$ to those of ${\displaystyle T_{2}}$ satisfying the following condition: for each internal vertex ${\displaystyle v}$ of ${\displaystyle T_{1}}$ with children ${\displaystyle u_{1},u_{2},...,u_{k}}$, the set of children of vertex ${\displaystyle \phi (v)}$ in ${\displaystyle T_{2}}$ is precisely ${\displaystyle \{\phi (u_{1}),\phi (u_{2}),...,\phi (u_{k})\}}$, no ordering among children assumed.
+
+Given an efficient randomized algorithm with bounded one-side error (false positive), for testing isomorphism between rooted trees with ${\displaystyle n}$ vertices. Analyze your algorithm.
+
+#### 回答
+
+> **算法**
+>
+> 设$son_u$为$u$的子节点的集合，$hash_u$为$u$的子节点的哈希值的集合，$H_u$为$u$的哈希值，$P$为任意质数
+>
+> function TreeHash($u$) : $H_u$
+>
+> ​	if $u$ is leaf node ($|son_u|=0$) then
+>
+> ​		return 1
+>
+> ​	initialize $hash_u=\phi$
+>
+> ​	for each $v$ in $son_u$
+>
+> ​		TreeHash($v$) joins $hash_u$
+>
+> ​	initialize $H_u=1$
+>
+> ​	for each $h$ in $hash_u$ in incresing order
+>
+> ​		$H_u=H_u*P+h$
+>
+> ​	return $H_u$
+>
+> 
+>
+> if TreeHash(root of $T_1$) = TreeHash(root of $T_2$)
+>
+> ​	return "yes"
+>
+> else
+>
+> ​	return "no"
+
+当$T_1$和$T_2$同构时，算法总是返回"yes"，所以总是正确的答案。
+
+当$T_1$和$T_2$不同构时，算法可能会返回"yes"（假正）。可以使用不同的质数$P$分别再运行一次算法，如果都为"yes"可以增大真正的概率。
+
+## Problem 4
+
