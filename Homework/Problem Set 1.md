@@ -134,7 +134,38 @@ Given an efficient randomized algorithm with bounded one-side error (false posit
 
 当$T_1$和$T_2$同构时，算法总是返回"yes"，所以总是正确的答案。
 
-当$T_1$和$T_2$不同构时，算法可能会返回"yes"（假正）。可以使用不同的质数$P$分别再运行一次算法，如果都为"yes"可以增大真正的概率。
+当$T_1$和$T_2$不同构时，算法可能会返回"yes"（假正）。可以选取不同的质数$P$分别运行一次算法，如果都为"yes"可以增大"真正"的概率。
 
 ## Problem 4
 
+Design a randomized algorithm to decide if an integer sequence ${\displaystyle a_{1},...,a_{n}}$ is a permutation of another integer sequence ${\displaystyle b_{1},...,b_{n}}$. Give upper bounds on the time complexity and the error probability.
+
+> **算法**
+>
+> 设$S_a=a_1,\ldots,a_n,S_b=b_1,\ldots,b_n$
+>
+> 设$h_1,h_2,\ldots,h_k : \mathbb Z \rightarrow [m]$是均匀独立随机哈希函数
+>
+> $Hash[k][m]$是一个$k \times m$的二维布尔数组，初识全为0，构造方式如下
+>
+> for each $a$ in $S_a$
+>
+> ​	for every $1 \leq j \leq k$, evaluate $h_j(a)$ and set $Hash[j][h_j(a)]=1$
+>
+> 接下来考虑判断$S_a$是否是$S_b$的排列
+>
+> for each $b$ in $S_b$
+>
+> ​	for every $1 \leq j \leq k$
+>
+> ​		evaluate $h_j(b)$
+>
+> ​		if $Hash[j][h_j(b)]=0$ return "no"
+>
+> return "yes"
+
+不考虑哈希函数的时间复杂度，总的时间复杂度为$O(nk)$。
+
+当$S_a$是$S_b$的排列时，总是返回"yes"，所以总是正确的答案。
+
+当$S_a$不是$S_b$的排列时，可能会返回"yes"（假正）。
