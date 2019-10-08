@@ -1,3 +1,7 @@
+成浩鹏 181250020
+
+---
+
 ## Problem 1
 
 Modify the Karger's Contraction algorithm so that it works for the *weighted min-cut problem*. Prove that the modified algorithm returns a weighted minimum cut with probability at least ${\displaystyle {\frac {2}{n(n-1)}}}$. The weighted min-cut problem is defined as follows.
@@ -174,7 +178,7 @@ Design a randomized algorithm to decide if an integer sequence ${\displaystyle a
 
 对于特定的哈希函数$h_k$，数组$Hash[k]$中至多有$n$个元素为1，且共有$m$个元素，则$Pr[\forall 1 \leq i \leq m,Hash[k][i]=1]\leq\frac{n}{m}$。
 
-$Pr[错误]=Pr[假正]=Pr[\forall 1 \leq i \leq n, \forall 1 \leq j \leq k,Hash[j][h_j{(b_i)}]=1]\leq (\frac{n}{m})^{nk}$
+$Pr[返回错误的结果]=Pr[S_a不是S_b的排列，但算法返回“yes”]\\=Pr[\forall 1 \leq i \leq n, \forall 1 \leq j \leq k,Hash[j][h_j{(b_i)}]=1]\\\leq (\frac{n}{m})^{nk}$
 
 ## Problem 5
 
@@ -210,3 +214,30 @@ Here are the questions:
 
 #### 回答
 
+**第一问**
+
+前$\frac{n}{2}$个球放完后，球数最多的盒子中大概率的球数为$\Theta (\frac{\log\ \frac{n}{2}}{log\ log\ \frac{n}{2}})$。
+
+后面的$\frac{n}{2}$个球我不知道该怎么做。
+
+**第二问**
+
+初始所有盒子都是空的，所以将相当于$\frac{n}{2}$个球$n$个盒的two-choice paradigm，此时盒子中有大概率的最大球数为$\Theta (log\ log\ \frac{n}{2})$。接着再随机放$\frac{n}{2}$个球。假设之前球最多的盒子为$X_k$，原来球数为$N$，接下来放进来的球个数为$M$，此时的概率为
+
+$Pr[X_k = N+M]=(^M_{\frac{n}{2}}) \times (\frac{1}{n})^M\\=\frac{1}{M!} \times \Pi _{i=0} ^{M-1} {(\frac{1}{2}-\frac{i}{n})}\\\leq\frac{1}{2}\times\frac{1}{M!}\\\leq\frac{1}{2}\times(\frac{e}{M})^M$
+
+设$M=f(n)$满足$\frac{1}{2}\times(\frac{e}{f(n)})^{f(n)}\ ～\ \frac{1}{n}$，则当$n$个球都放完后，球最多盒子中的最大概率的球数为$\Theta(log\ log\ \frac{n}{2} \ + \ f(\frac{n}{2}))$。
+
+**第三问**
+
+设球数排名第$k$的盒子为$X_k$，则如果使用two-choice paradigm，则下一个球放入这个盒子的概率为
+
+$Pr[twochoice\ 往X_k放下一个球]=Pr[选中X_k] \times Pr[选中X_i,\forall i \geq k] \times A_2^2\\=\frac{1}{n} \times \frac{n - k + 1}{n} \times 2$
+
+由于不断的放球，$k$可以从$n$变化到$1$，对这一过程中的$Pr[twochoice\ 往X_k放下一个球]$进行积分，得
+
+$\int^n_0{Pr[twochoice\ 往X_k放下一个球]}\ dx=2\int^n_0{\frac{x}{n^2}}\ dx\\=2 \times \frac{1}{n^2} \times \frac{1}{2}x^2|^n_0\\=1$
+
+则$Pr[twochoice放球]=\frac{\int^n_0{Pr[twochoice\ 往X_k放下一个球]}\ dx}{n}=\frac{1}{n}=Pr[随机放球]$。
+
+所以不论给定序列中每个元素的奇偶性如何，最终球最多盒子中的最大概率的球数都为${\displaystyle \Theta \left({\frac {\log n}{\log \log n}}\right)}$。
