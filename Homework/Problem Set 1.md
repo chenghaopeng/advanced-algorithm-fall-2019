@@ -198,7 +198,7 @@ Try to make ${\displaystyle s}$ as small as possible.
 
 #### 回答
 
-
+不会做
 
 ## Problem 6
 
