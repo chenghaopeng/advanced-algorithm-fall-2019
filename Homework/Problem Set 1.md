@@ -140,6 +140,8 @@ Given an efficient randomized algorithm with bounded one-side error (false posit
 
 Design a randomized algorithm to decide if an integer sequence ${\displaystyle a_{1},...,a_{n}}$ is a permutation of another integer sequence ${\displaystyle b_{1},...,b_{n}}$. Give upper bounds on the time complexity and the error probability.
 
+#### 回答
+
 > **算法**
 >
 > 设$S_a=a_1,\ldots,a_n,S_b=b_1,\ldots,b_n$
@@ -173,3 +175,38 @@ Design a randomized algorithm to decide if an integer sequence ${\displaystyle a
 对于特定的哈希函数$h_k$，数组$Hash[k]$中至多有$n$个元素为1，且共有$m$个元素，则$Pr[\forall 1 \leq i \leq m,Hash[k][i]=1]\leq\frac{n}{m}$。
 
 $Pr[错误]=Pr[假正]=Pr[\forall 1 \leq i \leq n, \forall 1 \leq j \leq k,Hash[j][h_j{(b_i)}]=1]\leq (\frac{n}{m})^{nk}$
+
+## Problem 5
+
+Let ${\displaystyle X_{1},X_{2},\ldots ,X_{n}}$ be ${\displaystyle n}$ random variables, where each ${\displaystyle X_{i}\in \{0,1\}}$ follows the distribution ${\displaystyle \mu _{i}}$. For each ${\displaystyle 1\leq i\leq n}$, let ${\displaystyle \rho _{i}=\mathbb {E} [X_{i}]}$ and assume ${\displaystyle \rho _{i}\geq {\frac {1}{2}}}$. Consider the problem of estimating the value of
+
+${\displaystyle Z=\prod _{i=1}^{n}\rho _{i}}$.
+For each ${\displaystyle 1\leq i\leq n}$, the algorithm draws ${\displaystyle s}$ random samples ${\displaystyle X_{i}^{(1)},X_{i}^{(2)},\ldots ,X_{i}^{(s)}}$ independently from the distribution ${\displaystyle \mu _{i}}$, and computes
+
+${\displaystyle {\widehat {\rho }}_{i}={\frac {1}{s}}\sum _{j=1}^{s}X_{i}^{(j)}}$.
+Finally, the algorithm outputs the product of all ${\displaystyle {\widehat {Z}}_{i}}$:
+
+${\displaystyle {\widehat {Z}}=\prod _{i=1}^{n}{\widehat {\rho }}_{i}}$.
+Express ${\displaystyle s}$ as a function of ${\displaystyle n,\varepsilon ,\delta }$ so that the output ${\displaystyle {\widehat {Z}}}$ satisfies
+
+${\displaystyle \Pr \left[\mathrm {e} ^{-\varepsilon }Z\leq {\widehat {Z}}\leq \mathrm {e} ^{\varepsilon }Z\right]\geq 1-\delta }$.
+Try to make ${\displaystyle s}$ as small as possible.
+
+#### 回答
+
+
+
+## Problem 6
+
+In Balls-and-Bins model, we throw ${\displaystyle m}$ balls independently and uniformly at random into ${\displaystyle n}$ bins. We know that the maximum load is ${\displaystyle \Theta \left({\frac {\log n}{\log \log n}}\right)}$ with high probability when ${\displaystyle m=\Theta (n)}$. The two-choice paradigm is another way to throw ${\displaystyle m}$ balls into ${\displaystyle n}$ bins: each ball is thrown into the least loaded of two bins chosen independently and uniformly at random(it could be the case that the two chosen bins are exactly the same, and then the ball will be thrown into that bin), and breaks the tie arbitrarily. When ${\displaystyle m=\Theta (n)}$, the maximum load of two-choice paradigm is known to be ${\displaystyle \Theta (\log \log n)}$ with high probability, which is exponentially less than the maxim load when there is only one random choice. This phenomenon is called the power of two choices.
+
+Here are the questions:
+
+- Consider the following paradigm: we throw ${\displaystyle n}$ balls into ${\displaystyle n}$ bins. The first ${\displaystyle {\frac {n}{2}}}$ balls are thrown into bins independently and uniformly at random. The remaining ${\displaystyle {\frac {n}{2}}}$ balls are thrown into bins using the two-choice paradigm. What is the maximum load with high probability? You need to give an asymptotically tight bound (in the form of ${\displaystyle \Theta (\cdot )}$).
+
+- Replace the above paradigm to the following: the first ${\displaystyle {\frac {n}{2}}}$ balls are thrown into bins using the two-choice paradigm while the remaining ${\displaystyle {\frac {n}{2}}}$ balls are thrown into bins independently and uniformly at random. What is the maximum load with high probability in this case? You need to give an asymptotically tight bound.
+
+- Replace the above paradigm to the following: assume all ${\displaystyle n}$ balls are thrown in a sequence. For every ${\displaystyle 1\leq i\leq n}$, if ${\displaystyle i}$ is odd, we throw ${\displaystyle i}$-th ball into bins independently and uniformly at random, otherwise, we throw it into bins using the two-choice paradigm. What is the maximum load with high probability in this case? You need to give an asymptotically tight bound.
+
+#### 回答
+
