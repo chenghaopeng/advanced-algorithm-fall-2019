@@ -27,3 +27,19 @@ $(1-\delta)^{1-\delta}>e^{-\delta+\frac{\delta^2}{2}}$代入得$\displaystyle Pr
 
 $\displaystyle Pr[X<(1-\delta)\mu]<[\frac{e^{-\delta}}{(1-\delta)^{1-\delta}}]^\mu<e^{-\mu*\frac{\delta^2}{2}}$
 
+
+
+**好的形式**
+
+- $对于t\ge 2e\mu,Pr[X\ge t]\le2^{-t}$
+
+证明：
+
+令$t=(1+\delta)\mu$，则$1+\delta\ge 2e$，于是
+
+$\displaystyle Pr[X\ge(1+\delta)\mu]\le[\frac{e^\delta}{(1+\delta)^{1+\delta}}]^\mu\\\le[\frac{e}{(1+\delta)}]^{(1+\delta)\mu}\\\le[\frac{e}{2e}]^{(1+\delta)\mu}\\=2^{-t}$
+
+
+
+- $t>0,Pr[X\ge E[X]+t]\le exp(-\frac{2t^2}{n}),Pr[X\le E[X]-t]\le exp(-\frac{2t^2}{n})$
+
