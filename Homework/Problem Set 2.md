@@ -20,13 +20,41 @@ Assume that ${\displaystyle X}$ is NOT almost surely constant. Then due to the c
 
 - **Normal random variables.** Let ${\displaystyle X\sim \mathrm {N} (\mu ,\sigma )}$ be a Gaussian random variable with mean ${\displaystyle \mu }$ and standard deviation ${\displaystyle \sigma }$. What are the ${\displaystyle \Psi _{X}(\lambda )}$ and ${\displaystyle \Psi _{X}^{*}(t)}$? And give a tail inequality to upper bound the probability ${\displaystyle \Pr[X\geq t]}$.
 - **Poisson random variables.** Let ${\displaystyle X\sim \mathrm {Pois} (\nu )}$ be a Poisson random variable with parameter ${\displaystyle \nu }$, that is, ${\displaystyle \Pr[X=k]=\mathrm {e} ^{-\nu }\nu ^{k}/k!}$ for all ${\displaystyle k=0,1,2,\ldots }$. What are the ${\displaystyle \Psi _{X}(\lambda )}$ and ${\displaystyle \Psi _{X}^{*}(t)}$? And give a tail inequality to upper bound the probability ${\displaystyle \Pr[X\geq t]}$.
-- **Bernoulli random variables.** Let ${\displaystyle X\in \{0,1\}}$ be a single Bernoulli trial with probability of success ${\displaystyle p}$, that is, ${\displaystyle \Pr[X=1]=1-\Pr[X=0]=p}$. Show that for any ${\displaystyle t\in (p,1)}$, we have ${\displaystyle \Psi _{X}^{*}(t)=D(Y\|X)}$ where ${\displaystyle Y\in \{0,1\}}$ is a Bernoulli random variable with parameter ${\displaystyle t}$ and ${\displaystyle D(Y\|X)=(1-t)\ln {\frac {1-t}{1-p}}+t\ln {\frac {t}{p}}}$ is the Kullback-Leibler divergence between ${\displaystyle Y}$ and ${\displaystyle X}$.
+- **Bernoulli random variables.** Let ${\displaystyle X\in \{0,1\}}$ be a single Bernoulli trial with probability of success ${\displaystyle p}$, that is, ${\displaystyle \Pr[X=1]=1-\Pr[X=0]=p}$. Show that for any ${\displaystyle t\in (p,1)}$, we have ${\displaystyle \Psi _{X}^{*}(t)=D(Y\|X)}$ where ${\displaystyle Y\in \{0,1\}}$ is a Bernoulli random variable with parameter ${\displaystyle t}$ and ${\displaystyle D(Y\|X)=(1-t)\ln {\frac {1-t}{1-p}}+t\ln {\frac {t}{p}}}$ is the [Kullback-Leibler](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) divergence between ${\displaystyle Y}$ and ${\displaystyle X}$.
 - **Sum of independent random variables.** Let ${\displaystyle X=\sum _{i=1}^{n}X_{i}}$ be the sum of ${\displaystyle n}$ independently and identically distributed random variables ${\displaystyle X_{1},X_{2},\ldots ,X_{n}}$. Show that ${\displaystyle \Psi _{X}(\lambda )=\sum _{i=1}^{n}\Psi _{X_{i}}(\lambda )}$ and ${\displaystyle \Psi _{X}^{*}(t)=n\Psi _{X_{i}}^{*}({\frac {t}{n}})}$. Also for binomial random variable ${\displaystyle X\sim \mathrm {Bin} (n,p)}$, give an upper bound to the tail inequality ${\displaystyle \Pr[X\geq t]}$ in terms of KL-divergence.
   Give an upper bound to ${\displaystyle \Pr[X\geq t]}$ when every ${\displaystyle X_{i}}$ follows the geometric distribution with a probability ${\displaystyle p}$ of success.
 
 #### 回答
 
+- $Pr[X\ge t]=Pr[e^{\lambda X}\ge e^{\lambda t}]$，运用Markov Inequality有$Pr[e^{\lambda X}\ge e^{\lambda t}]\le\frac{E[e^{\lambda X}]}{e^{\lambda t}}=e^{\Psi _X(\lambda )-\lambda t}\le e^{-\Psi_X^*(t)}$，于是$Pr[X\ge t]\le \exp(-\Psi_X^*(t))$。
 
+  设$f(\lambda)=\lambda t-\Psi_X(\lambda)$，则令$f'(\lambda)=t-\Psi_X'(\lambda)=0$得$\Psi_X'(\lambda)=t$，则$\Psi_X^*(t)=\lambda t-\int\Psi_X'(\lambda)d\lambda=Ct$，其中$C$为一常数。所以要让$\Psi_X^*(t)$取到上界，就需要满足$\Psi_X'(\lambda)=t$。
+
+- $E[e^{\lambda X}]=e^{\mu\lambda+\frac{\sigma^2\lambda^2}{2}}$，则$\Psi_X(\lambda)=\mu\lambda+\frac{\sigma^2\lambda^2}{2}$，$\displaystyle \Psi_X^*(t)=\sup_{\lambda\ge0}{(\lambda t-\mu\lambda-\frac{\sigma^2\lambda^2}{2})}=\sup_{\lambda\ge0}{(-\frac{\sigma^2\lambda^2}{2}+(t-\mu)\lambda)}=\begin{cases}0,t\le\mu\\\frac{(t-\mu)^2}{2\sigma^2},t>\mu\end{cases}$
+
+  $Pr[X\ge t]\le \exp(-\Psi_X^*(t))=\exp(-\frac{(t-\mu)^2}{2\sigma^2})$
+
+- $\displaystyle E[e^{\lambda X}]=\sum_{k=0}^\infin{e^{\lambda k}e^{-v}v^k/k!}=e^{-v}\sum_{k=0}^\infin{\frac{(e^\lambda v)^k}{k!}}=e^{-v}e^{e^\lambda v}=e^{(e^\lambda-1)v}$，则$\Psi_X(\lambda)=(e^\lambda-1)v$，$\displaystyle \Psi_X^*(t)=\sup_{\lambda\ge0}{(\lambda t-(e^\lambda-1)v)}$
+
+  令${\Psi_{X}'(\lambda)=t}$得$\lambda=\ln\frac{t}{v}$代入得$\sup \Psi_X^*(t)=t\ln\frac{t}{v}-t+v$，则$Pr[X\ge t]\le \exp(-\Psi_X^*(t))\le \exp(t-v-t\ln\frac{t}{v})$
+
+- $E[e^{\lambda X}]=pe^\lambda+(1-p)*1=pe^\lambda+1-p$
+
+  $\Psi_X(\lambda)=\ln(pe^\lambda+1-p),\Psi_X'(\lambda)=\frac{pe^\lambda}{pe^\lambda+1-p}$
+
+  由${\Psi_X'(\lambda)=t}$得$\lambda=\ln\frac{t(p-1)}{p(t-1)}=\ln\frac{t}{p}-\ln\frac{1-t}{1-p},\ln(pe^\lambda+1-p)=\ln\frac{pe^\lambda}{t}=\lambda-\ln\frac{t}{p}$
+
+  $\Psi_X^*(t)=\lambda t-\ln(pe^\lambda+1-p)=\lambda t-\lambda+\ln\frac{t}{p}=(t-1)(\ln\frac{t}{p}-\ln\frac{1-t}{1-p})+\ln\frac{t}{p}=(1-t)\ln\frac{1-t}{1-p}+t\ln\frac{t}{p}$
+
+- $\displaystyle \Psi_X(\lambda)=\ln E[e^{\lambda X}]=\ln E[e^{\lambda\sum_{i=1}^nX_i}]=\ln E[\prod_{i=1}^ne^{\lambda X_i}]=\ln \prod_{i=1}^nE[e^{\lambda X_i}]=\sum_{i=1}^n\ln E[e^{\lambda X_i}]=\sum_{i=1}^n\Psi_{X_i}(\lambda)$
+
+  $\displaystyle \Psi_X^*(t)=\sup_{\lambda\geq0}(\lambda t-\Psi_X(\lambda))=\sup_{\lambda\geq0}(\sum_{i=1}^n(\lambda \frac{t}{n})-\sum_{i=1}^n\Psi_{X_i}(\lambda))=\sum_{i=1}^n\sup_{\lambda\geq0}(\lambda \frac{t}{n}-\Psi_{X_i}(\lambda))=\sum_{i=1}^n\Psi_{X_i}^*(\frac{t}{n})$，因为$X_i$独立同分布，所以$\displaystyle \Psi_X^*(t)=\sum_{i=1}^n\Psi_{X_i}^*(\frac{t}{n})=n\Psi_{X_i}^*(\frac{t}{n})$
+  
+  $\Psi_{X_i}^*(\frac{t}{n})=(1-\frac{t}{n})\ln\frac{1-\frac{t}{n}}{1-p}+\frac{t}{n}\ln\frac{\frac{t}{n}}{p}=(1-\frac{t}{n})\ln\frac{n-t}{1-p}+\frac{t}{n}\ln\frac{t}{p}-\ln n$
+  
+  $Pr[X\ge t]\le \exp(-\Psi_X^*(t))=\exp(-n\Psi_{X_i}^*(\frac{t}{n}))=\exp(n\ln n-(n-t)\ln\frac{n-t}{1-p}-t\ln\frac{t}{p})$
+  
+  $Pr[X\ge t]=1-Pr[X<t]=1-{t-1\choose n}p^n(1-p)^{t-1-n}\\=1-\frac{(t-1)!}{n!(t-1-n)!}*p^n(1-p)^{t-1-n}\\=1-p^n(1-p)^{t-1-n}\prod_{i=1}^n\frac{t-1-n+i}{i}\\\le1-p^n(1-p)^{t-1-n}(1+(t-1-n)\sum_{i=1}^n\frac{1}{i})\\\le1-p^n(1-p)^{t-1-n}(1+(t-1-n)\ln n)$
 
 ## Problem 2
 
