@@ -74,7 +74,13 @@ Give the relation between ${\displaystyle c}$ and ${\displaystyle t}$.
 
 #### 回答
 
+对于任意两个顶点$u,v$的距离，不会超过$n$，因为其向量表示只有$n$位。
 
+设随机变量序列$X_1,\ldots,X_n$表示长为$n$的一条路径，设$Y_i=E[f(u)\mid X_1,\ldots,X_i],0\le i\le n$，特别地，$Y_0=E[f(u)],Y_n=f(u)$。
+
+考虑$Y_i=E[f(u)\mid X_1,\ldots,X_i]$，路径上每增加一个新的顶点，一种情况是远离目标点而去，需要再多走一步返回，另一种情况是向着目标点走，所以有$\mid Y_i-Y_{i-1}\mid\le2$。根据`Azuma's Inequality`有$Pr[\mid Y_n-Y_0\mid\ge t]\le2\exp(-\frac{t^2}{2\sum_{k=1}^n{2^2}})=2\exp(-\frac{t^2}{8n})$，$t$用$t\sqrt{n\log n}$代入有$Pr[\mid Y_n-Y_0\mid\ge t\sqrt{n\log n}]\le2\exp(-\frac{(t\sqrt{n\log n})^2}{8n})=2exp(-\frac{t^2\log n}{8})=2n^{-t^2/8}\le n^{-t^2/8+1}$
+
+所以$Pr[\mid f(u)-E[f(u)]\mid\ge t\sqrt{n\log n}]=Pr[\mid Y_n-Y_0\mid\ge t]\le n^{-t^2/8+1}$，此时$c=t^2/8-1$。
 
 ## Problem 3
 
