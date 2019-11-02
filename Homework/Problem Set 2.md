@@ -110,7 +110,21 @@ This implies the random sequence ${\displaystyle (Y_{i})_{1\leq i\leq n}}$ is st
 
 #### 回答
 
+- 设$Pr[Y_i=1\mid\forall1\le j<i,Y_j=c_j]=p_i<p$，其中$p_i$是与$Y$的前$i-1$项相关的变量
 
+  对于某一确定的$X$和$Y$，构造$Z_1,\ldots,Z_n$，满足
+
+  - 如果$X_i=0$，则$Z_i=0$
+  - 如果$X_i=1$，则有概率$\frac{p_i}{p}$使$Z_i=1$
+
+  此时，有$Pr[\forall1\le i\le n,X_i\ge Z_i]=1$，从而$Pr[\sum_{i=1}^nX_i\ge a]\ge Pr[\sum_{i=1}^nZ_i\ge a]$
+
+  而$Pr[Z_i=1]=Pr[X_i=1]*\frac{p_i}{p}=p_i<p$，此时$Z$和$Y$是同分布的，所以也就有$Pr[\sum_{i=1}^nX_i\ge a]\ge Pr[\sum_{i=1}^nY_i\ge a]$
+
+  对于其他的$X$和$Y$，同理也有此结论，所以对于任意$X$和$Y$，都有$Pr[\sum_{i=1}^nY_i\ge a]\le Pr[\sum_{i=1}^nX_i\ge a]$
+  
+- - 当$t=0$时，$Pr[\sum_{i=1}^nY_i\ge np+t]\le1$成立
+  - 当$t>0$时，设$X=\sum_{i=1}^nX_i$，由`Chernoff Bound`$Pr[X\ge E[X]+t]\le\exp(-\frac{2t^2}{n})$得$Pr[\sum_{i=1}^nX_i\ge np+t]\le\exp(-\frac{2t^2}{n})$，又有$Pr[\sum_{i=1}^nX_i\ge a]\ge Pr[\sum_{i=1}^nY_i\ge a]$，所以$Pr[\sum_{i=1}^nY_i\ge np+t]\le\exp(-\frac{2t^2}{n})$
 
 ## Problem 4
 
