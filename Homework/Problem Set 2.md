@@ -153,3 +153,8 @@ Here ${\displaystyle sim:2^{U}\times 2^{U}\rightarrow [0,1]}$ is called the simi
 
 #### 回答
 
+- 当$A=B$或$C=B$时，$d(A,B)+d(B,C)=d(A,C)$
+
+  当$A\ne B$且$C\ne B$时，$d(A,B)$和$d(B,C)$中可能包含了重叠的部分$x$，所以计算$d(A,C)$就需要减去这一部分，而$d(A,B)$和$d(B,C)$中重叠就代表这个差距在$A$和$C$之间不存在，所以还要在减去一次，也就是$d(A,C)=d(A,B)+d(B,C)-2x$，所以$d(A,B)+d(B,C)\ge d(A,C)$
+
+- 
