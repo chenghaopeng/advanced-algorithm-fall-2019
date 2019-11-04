@@ -26,7 +26,7 @@ Assume that ${\displaystyle X}$ is NOT almost surely constant. Then due to the c
 
 #### 回答
 
-- $Pr[X\ge t]=Pr[e^{\lambda X}\ge e^{\lambda t}]$，运用Markov Inequality有$Pr[e^{\lambda X}\ge e^{\lambda t}]\le\frac{E[e^{\lambda X}]}{e^{\lambda t}}=e^{\Psi _X(\lambda )-\lambda t}\le e^{-\Psi_X^*(t)}$，于是$Pr[X\ge t]\le \exp(-\Psi_X^*(t))$。
+- $Pr[X\ge t]=Pr[e^{\lambda X}\ge e^{\lambda t}]$，运用`Markov Inequality`有$Pr[e^{\lambda X}\ge e^{\lambda t}]\le\frac{E[e^{\lambda X}]}{e^{\lambda t}}=e^{\Psi _X(\lambda )-\lambda t}\le e^{-\Psi_X^*(t)}$，于是$Pr[X\ge t]\le \exp(-\Psi_X^*(t))$。
 
   设$f(\lambda)=\lambda t-\Psi_X(\lambda)$，则令$f'(\lambda)=t-\Psi_X'(\lambda)=0$得$\Psi_X'(\lambda)=t$，则$\Psi_X^*(t)=\lambda t-\int\Psi_X'(\lambda)d\lambda=Ct$，其中$C$为一常数。所以要让$\Psi_X^*(t)$取到上界，就需要满足$\Psi_X'(\lambda)=t$。
 
