@@ -155,6 +155,18 @@ Here ${\displaystyle sim:2^{U}\times 2^{U}\rightarrow [0,1]}$ is called the simi
 
 - 当$A=B$或$C=B$时，$d(A,B)+d(B,C)=d(A,C)$
 
-  当$A\ne B$且$C\ne B$时，$d(A,B)$和$d(B,C)$中可能包含了重叠的部分$x$，所以计算$d(A,C)$就需要减去这一部分，而$d(A,B)$和$d(B,C)$中重叠就代表这个差距在$A$和$C$之间不存在，所以还要在减去一次，也就是$d(A,C)=d(A,B)+d(B,C)-2x$，所以$d(A,B)+d(B,C)\ge d(A,C)$
+  当$A\ne B$且$C\ne B$时，$d(A,B)$和$d(B,C)$中可能包含了重叠的部分$x$，所以计算$d(A,C)$就需要减去这一部分，而$d(A,B)$和$d(B,C)$中重叠就代表这个差距在$A$和$C$之间不存在，所以还要再减去一次，也就是$d(A,C)=d(A,B)+d(B,C)-2x$，所以$d(A,B)+d(B,C)\ge d(A,C)$
 
-- 
+- 若$sim(\cdot,\cdot)$没有对应的局部敏感哈希函数系列，则存在$A,B,C$不满足三角形不等式
+
+  - 考虑`Dice's coefficient`，当$A=\{a\},B=\{a,b\},C=\{b\}$时，$d(A,C)=1$，$d(A,B)=d(B,C)=1-\frac{2*1}{1+2}=\frac{1}{3}$，此时$d(A,B)+d(B,C)\ge d(A,C)$不成立，所以`Dice's coefficient`没有对应的局部敏感哈希函数系列
+  - 同理考虑`Overlap coefficient`，当$A=\{a\},B=\{a,b\},C=\{b\}$时，$d(A,C)=1$，$d(A,B)=d(B,C)=1-\frac{1}{1}=0$，此时$d(A,B)+d(B,C)\ge d(A,C)$不成立，所以`Overlap coefficient`没有对应的局部敏感哈希函数系列
+  
+- $\forall h\in\mathcal F,\forall g\in\mathcal B$，$\forall A,B\in2^U$，$Pr[h(A)=h(B)]=sim(A,B)$
+
+  - 当$h(A)=h(B)$时，$Pr[g(h(A))=g(h(B))]=1$
+  - 当$h(A)\ne h(B)$时，$Pr[g(h(A))=g(h(B))]=\frac{1}{2}$
+
+  则$Pr[g(h(A))=g(h(B))]=1*Pr[h(A)=h(B)]+\frac{1}{2}*Pr[h(A)\ne h(B)]\\=1*sim(A,B)+\frac{1}{2}*(1-sim(A,B))=\frac{1+sim(A,B)}{2}$
+
+  所以可以生成局部敏感哈希函数系列$\mathcal F'(h'=g\ \circ\ h,\ for\ each\ h'\in\mathcal F')$对应于相似函数$\frac{1+sim(A,B)}{2}$
