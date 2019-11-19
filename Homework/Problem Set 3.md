@@ -24,7 +24,19 @@ as the cost of the **${\displaystyle k}$-cut** ${\displaystyle \{S_{1},S_{2},\ld
 
 #### 回答
 
+1. 算法
 
+   > 初始一个点的集合的集合$T=\{\{v_1\},\{v_2\},\ldots,\{v_{\mid V\mid}\}\}$
+   >
+   > 当$\mid T\mid>k$执行：
+   >
+   > ​	选择$S_i,S_j\in T$，使得$S_i$中的点与$S_j$中的点之间的边权之和，在所有可能的选择中最小
+   >
+   > ​	$T=T-S_i-S_j+S_i\cup S_j$，从T中删去$S_i$和$S_j$，再加入$S_i\cup S_j$
+   >
+   > 返回$w(T)$即为所求
+
+   
 
 ## Problem 2
 
