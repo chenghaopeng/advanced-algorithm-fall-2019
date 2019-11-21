@@ -36,7 +36,13 @@ as the cost of the **${\displaystyle k}$-cut** ${\displaystyle \{S_{1},S_{2},\ld
    >
    > 返回$w(T)$即为所求
 
+   设$SOL_i$为$\mid T\mid=i$时，$T$中元素之间的距离之和，则$SOL_n=\sum_{uv\in E} w(uv)\ge OPT$。
    
+   当$\mid T\mid=i+1$时，图$T$中有$C_{i+1}^2$条边，其中可能包含权为$0$的边，那么边的平均权值为$\overline{w_i}=\frac{1}{C_{i+1}^2}SOL_{i+1}$，则必然存在一条边的权小于等于$\overline{w_i}$，则$SOL_i\ge SOL_{i+1}-\overline{w_i}=(1-\frac{1}{C_{i+1}^2})SOL_{i+1}$，迭代可得$SOL_k\ge \overline{w_i}*\prod_{i=k}^{n-1}{(1-\frac{2}{(i+1)i})}\ge\overline{w_i}*(1-2(\frac{1}{k}-\frac{1}{n}))$。
+   
+   所以$\alpha\ge\frac{SOL_k}{OPT}\ge\frac{\overline{w_i}*(1-2(\frac{1}{k}-\frac{1}{n}))}{\overline{w_i}}=1-2(\frac{1}{k}-\frac{1}{n})\approx1-\frac{1}{k}$。
+   
+2. 
 
 ## Problem 2
 
