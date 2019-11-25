@@ -107,7 +107,7 @@ We consider a generalized rounding scheme such that every ${\displaystyle {\hat 
 
 #### 回答
 
-
+- $Pr[满足C_j]=1-\prod_{i\in S_j^+}{(1-f(x^*_i))}\prod_{i\in S_j^-}{f(x_i^*)}$
 
 ## Problem 5
 
