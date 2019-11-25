@@ -80,7 +80,15 @@ Let ${\displaystyle x_{v}^{*},y_{u,v}^{*}}$ denote the optimal solution to the *
 
 #### 回答
 
+- $OPT\le OPT_{LP}=\sum_{(u,v)\in E}y^*_{u,v}$
 
+  $Pr[(u,v)是割]=Pr[\hat x_u=1\ and\ \hat x_v=0]=x^*_u*(1-x^*_v)\ge (y^*_{u,v})^2$
+
+  $\mathbb E[割数]\ge\sum_{(u,v)\in E}{(y^*_{u,v})^2}\ge\frac{(\sum_{(u,v)\in E}y^*_{u,v})^2}{\left|E\right|}\ge\frac{OPT^2}{\left|E\right|}$
+  
+- $Pr[(u,v)是割]=Pr[\hat x_u=1\ and\ \hat x_v=0]=(1/4+x^*_u/2)*(1-1/4-x^*_v/2)\\=\frac{1}{4}\left[ \frac{1}{4}+\frac{1}{2}(1-x^*_v+x^*_u)+x^*_u(1-x^*_v) \right]\\\ge\frac{1}{4}(y^*_{u,v}+\frac{1}{2})^2$
+
+  $\mathbb E[割数]\ge\frac{1}{4}\sum_{(u,v)\in E}{(y^*_{u,v}+\frac{1}{2})^2}\\\ge\frac{1}{4}\frac{(\sum_{(u,v)\in E}(y^*_{u,v}+\frac{1}{2}))^2}{\left|E\right|}\\=\frac{1}{4}\frac{(\sum_{(u,v)\in E}y^*_{u,v}+\frac{1}{2}\left|E\right|)^2}{\left|E\right|}\\\ge\frac{1}{4}\frac{(OPT+\frac{1}{2}\left|E\right|)^2}{\left|E\right|}$
 
 ## Problem 4
 
