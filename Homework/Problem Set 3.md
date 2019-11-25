@@ -42,7 +42,11 @@ as the cost of the **${\displaystyle k}$-cut** ${\displaystyle \{S_{1},S_{2},\ld
    
    所以$\alpha\ge\frac{SOL_k}{OPT}\ge\frac{\overline{w_i}*(1-2(\frac{1}{k}-\frac{1}{n}))}{\overline{w_i}}=1-2(\frac{1}{k}-\frac{1}{n})\approx1-\frac{1}{k}$。
    
-2. 
+2. **括号内填入**：$w(S_i,S_{1-i})<w(S_i-\{v\},S_{1-i}\cap\{v\})$
+
+   **运行时间分析**：在while循环内，需要枚举最多$\mid V \mid$个点，每个点需要最多$\mid V\mid$的时间来计算$w(S_i,S_{1-i})$，所以运行时间为$O(\mid V\mid^2)$。然后每一次局部的调整，都说明$w(S_i,S_{1-i})$变大了，并且由于边权为非负整数，那么$w(S_i,S_{1-i})$最少是变化了$1$，所以$w(S_i,S_{1-i})$的变化次数最多能达到$\sum_{uv\in E}w(uv)$。所以总的时间复杂度为$O(\mid V\mid^2\sum_{uv\in E}w(uv))$。
+   
+   **近似比**：设$w(v)=\sum_{uv\in E,u\in S_{1-i}}w(uv)$，$\forall v\in V$，满足$w(v)\ge\frac{\sum_{uv\in E}w(uv)}{2}$（如果不满足，那么$v$就应该放到另一个集合）。则$w(S_i,S_{1-i})=\frac{\sum_{v\in V}{w(v)}}{2}\ge\frac{\sum_{v\in V}{\frac{\sum_{uv\in E}w(uv)}{2}}}{2}=\frac{2\sum_{uv\in E}{w(uv)}}{4}=\frac{\sum_{uv\in E}{w(uv)}}{2}\ge\frac{OPT}{2}$，所以$\alpha\ge\frac{1}{2}$。
 
 ## Problem 2
 
