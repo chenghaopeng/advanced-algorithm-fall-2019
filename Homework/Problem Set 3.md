@@ -56,7 +56,17 @@ Given ${\displaystyle m}$ subsets ${\displaystyle S_{1},S_{2},\ldots ,S_{m}\subs
 
 #### 回答
 
+> 初始$C=\{\},A=\{1,2,\ldots,n\}$
+>
+> 循环$k$次：
+>
+> ​	选择$t\in A$，使得$\mid\displaystyle S_t\cup \bigcup_{i\in C}S_i\mid$在所有选择中最大
+>
+> ​	$A=A-\{t\},C=C\cup\{t\}$
+>
+> 返回$C$
 
+设第$i$次，新覆盖了$a_i$个点，那么总共覆盖了$b_i=\sum_{i=1}^na_i$个点，设最大的覆盖数为$OPT$，那么还剩下未覆盖数为$OPT-b_i$，那么在接下来的$k-i$次覆盖中最多还能覆盖$OPT-b_i$个点，那么存在第$i+1$次能够新覆盖$a_{i+1}\ge\frac{OPT-b_i}{k-i}>\frac{OPT-b_i}{k}$。由$b_{i+1}=b_i+a_{i+1}$得$OPT-b_{i+1}=OPT-b_i-a_{i+1}< OPT-b_i-\frac{OPT-b_i}{k}=(OPT-b_i)(1-\frac{1}{k})$，所以$OPT-b_k<(1-\frac{1}{k})^k(OPT-b_0)=(1-\frac{1}{k})^kOPT$，得$b_k>(1-(1-\frac{1}{k})^k)OPT$，所以$\alpha>1-(1-\frac{1}{k})^k>1-\frac{1}{e}$。
 
 ## Problem 3
 
