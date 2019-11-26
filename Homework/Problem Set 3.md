@@ -117,7 +117,13 @@ We consider a generalized rounding scheme such that every ${\displaystyle {\hat 
 
   设$OPT$为最多的满足的数量，$a_i$为确定$x_i$后新增的满足的子句数量，$b_i=E[满足的子句数|x_1,x_2,_\ldots,x_i]=\sum_{j=1}^ia_j$为已满足的子句数量，而$x_{i+1}\in\{0,1\}$至少能在剩下的$OPT-b_i$个子句中满足一半，也就是$a_{i+1}\ge\frac{OPT-b_i}{2}$。$b_{i+1}=b_i+a_{i+1}$则$OPT-b_{i+1}=OPT-b_i-a_{i+1}\le OPT-b_i-\frac{OPT-b_i}{2}=\frac{1}{2}(OPT-b_i)$，迭代得$OPT-b_n\le\frac{1}{2}^n(OPT-b_0)=\frac{1}{2}^nOPT$，所以$E[满足的子句数|x_1,x_2,_\ldots,x_n]=b_n\ge(1-\frac{1}{2}^n)OPT\ge\frac{3}{4}OPT$。
 
-- 
+- 选择$1-k^{-x}\leq f(x)\leq k^{x-1}$
+
+  $Pr[满足C_j]=1-\prod_{i\in S_j^+}{(1-f(x^*_i))}\prod_{i\in S_j^-}{f(x_i^*)}\\\ge1-\prod_{i\in S_j^+}{(1-1+k^{-x_i^*})}\prod_{i\in S_j^-}{k^{x_i^*-1}}\\=1-k^{-\sum_{i\in S_j^+}{x_i^*}+\sum_{i\in S_j^-}{(x_i^*-1)}}\\\ge1-k^{-y_j^*}\\\ge\frac{k-1}{k}y^*_j$
+
+  所以$E[满足的子句数]\ge\frac{k-1}{k}\sum_{j=1}^m{y_j^*}\ge\frac{k-1}{k}*OPT$
+
+  选择更大的$k$可以达到更好的近似比。
 
 ## Problem 5
 
