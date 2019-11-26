@@ -107,7 +107,11 @@ We consider a generalized rounding scheme such that every ${\displaystyle {\hat 
 
 #### 回答
 
-- $Pr[满足C_j]=1-\prod_{i\in S_j^+}{(1-f(x^*_i))}\prod_{i\in S_j^-}{f(x_i^*)}$
+- $Pr[满足C_j]=1-\prod_{i\in S_j^+}{(1-f(x^*_i))}\prod_{i\in S_j^-}{f(x_i^*)}\\\ge1-\prod_{i\in S_j^+}{(1-1+4^{-x_i^*})}\prod_{i\in S_j^-}{4^{x_i^*-1}}\\=1-4^{-\sum_{i\in S_j^+}{x_i^*}+\sum_{i\in S_j^-}{(x_i^*-1)}}\\\ge1-4^{-y_j^*}\\\ge\frac{3}{4}y^*_j$
+
+  所以$E[满足的子句数]\ge\frac{3}{4}\sum_{j=1}^m{y_j^*}\ge\frac{3}{4}*OPT$
+
+- 
 
 ## Problem 5
 
