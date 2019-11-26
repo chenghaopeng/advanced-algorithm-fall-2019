@@ -142,8 +142,6 @@ Given ${\displaystyle m}$ subsets ${\displaystyle S_{1},S_{2},\ldots ,S_{m}\subs
 
   **LP-relaxation**
 
-  ${\displaystyle {\begin{aligned}{\text{minimize}}&&&\sum _{v\in V,\mathcal R(x_v)=1}w_v\\{\text{subject to}}&&&\sum_{v\in e}x_v\ge1,&&e\in E\\&&&x_v\in [0,1],&&v\in V\end{aligned}}}$
-
-  其中$\mathcal R(\cdot)$是一个随机源，对于$p\in[0,1]$，$\mathcal R(p)$返回一个随机独立样本$X\in\{0,1\}$。
+  ${\displaystyle {\begin{aligned}{\text{minimize}}&&&\sum _{v\in V,x_v\ge\frac{1}{2}}w_v\\{\text{subject to}}&&&\sum_{v\in e}x_v\ge1,&&e\in E\\&&&x_v\in [0,1],&&v\in V\end{aligned}}}$
 
 - 
