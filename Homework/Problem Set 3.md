@@ -144,4 +144,4 @@ Given ${\displaystyle m}$ subsets ${\displaystyle S_{1},S_{2},\ldots ,S_{m}\subs
 
   ${\displaystyle {\begin{aligned}{\text{minimize}}&&&\sum _{v\in V,x_v\ge\frac{1}{2}}w_v\\{\text{subject to}}&&&\sum_{v\in e}x_v\ge1,&&e\in E\\&&&x_v\in [0,1],&&v\in V\end{aligned}}}$
 
-- 
+- 设$C_{SOL}=\{c_1,c_2,\ldots,c_n\}$，其中$c_i$表示第$i$个进入集合的元素，$a_i=\left|\bigcup_{j=1}^iS_{c_j}\right|$是前$i$个集合的并集的大小，$b_i=\sum_{j=1}^iw_{c_i}$是前$i$个集合的权值和。在第$i+1$次选择时，此时与最优值的距离为$OPT-b_i$，那么至少存在一个集合$c_k$的权值$w_{c_k}\ge\frac{OPT-b_i}{n}$，选中这个集合作为$c_{i+1}$的概率$Pr[c_{i+1}=c_k]\ge x^*_{c_k}\prod_{j\notin C_{SOL_{i}},j\ne k}{(1-x^*_{c_j})}$，$b_{i+1}=b_i+w_{c_{i+1}}$。
