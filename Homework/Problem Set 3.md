@@ -66,7 +66,7 @@ Given ${\displaystyle m}$ subsets ${\displaystyle S_{1},S_{2},\ldots ,S_{m}\subs
 >
 > 返回$C$
 
-设第$i$次，新覆盖了$a_i$个点，那么总共覆盖了$b_i=\sum_{i=1}^na_i$个点，设最大的覆盖数为$OPT$，那么还剩下未覆盖数为$OPT-b_i$，那么在接下来的$k-i$次覆盖中最多还能覆盖$OPT-b_i$个点，那么存在第$i+1$次能够新覆盖$a_{i+1}\ge\frac{OPT-b_i}{k-i}>\frac{OPT-b_i}{k}$。由$b_{i+1}=b_i+a_{i+1}$得$OPT-b_{i+1}=OPT-b_i-a_{i+1}< OPT-b_i-\frac{OPT-b_i}{k}=(OPT-b_i)(1-\frac{1}{k})$，所以$OPT-b_k<(1-\frac{1}{k})^k(OPT-b_0)=(1-\frac{1}{k})^kOPT$，得$b_k>(1-(1-\frac{1}{k})^k)OPT$，所以$\alpha>1-(1-\frac{1}{k})^k>1-\frac{1}{e}$。
+设第$i$次，新覆盖了$a_i$个点，那么总共覆盖了$b_i=\sum_{j=1}^ia_j$个点，设最大的覆盖数为$OPT$，那么还剩下未覆盖数为$OPT-b_i$，那么在接下来的$k-i$次覆盖中最多还能覆盖$OPT-b_i$个点，那么存在第$i+1$次能够新覆盖$a_{i+1}\ge\frac{OPT-b_i}{k-i}>\frac{OPT-b_i}{k}$。由$b_{i+1}=b_i+a_{i+1}$得$OPT-b_{i+1}=OPT-b_i-a_{i+1}< OPT-b_i-\frac{OPT-b_i}{k}=(OPT-b_i)(1-\frac{1}{k})$，所以$OPT-b_k<(1-\frac{1}{k})^k(OPT-b_0)=(1-\frac{1}{k})^kOPT$，得$b_k>(1-(1-\frac{1}{k})^k)OPT$，所以$\alpha>1-(1-\frac{1}{k})^k>1-\frac{1}{e}$。
 
 ## Problem 3
 
@@ -110,6 +110,12 @@ We consider a generalized rounding scheme such that every ${\displaystyle {\hat 
 - $Pr[满足C_j]=1-\prod_{i\in S_j^+}{(1-f(x^*_i))}\prod_{i\in S_j^-}{f(x_i^*)}\\\ge1-\prod_{i\in S_j^+}{(1-1+4^{-x_i^*})}\prod_{i\in S_j^-}{4^{x_i^*-1}}\\=1-4^{-\sum_{i\in S_j^+}{x_i^*}+\sum_{i\in S_j^-}{(x_i^*-1)}}\\\ge1-4^{-y_j^*}\\\ge\frac{3}{4}y^*_j$
 
   所以$E[满足的子句数]\ge\frac{3}{4}\sum_{j=1}^m{y_j^*}\ge\frac{3}{4}*OPT$
+
+- >$i=1\to n$，循环n次
+  >
+  >​	选择$x_i\in\{0,1\}$，使得$E[满足的子句数|x_1,x_2,_\ldots,x_i]最大$
+
+  设$OPT$为最多的满足的数量，$a_i$为确定$x_i$后新增的满足的子句数量，$b_i=E[满足的子句数|x_1,x_2,_\ldots,x_i]=\sum_{j=1}^ia_j$为已满足的子句数量，而$x_{i+1}\in\{0,1\}$至少能在剩下的$OPT-b_i$个子句中满足一半，也就是$a_{i+1}\ge\frac{OPT-b_i}{2}$。$b_{i+1}=b_i+a_{i+1}$则$OPT-b_{i+1}=OPT-b_i-a_{i+1}\le OPT-b_i-\frac{OPT-b_i}{2}=\frac{1}{2}(OPT-b_i)$，迭代得$OPT-b_n\le\frac{1}{2}^n(OPT-b_0)=\frac{1}{2}^nOPT$，所以$E[满足的子句数|x_1,x_2,_\ldots,x_n]=b_n\ge(1-\frac{1}{2}^n)OPT\ge\frac{3}{4}OPT$。
 
 - 
 
