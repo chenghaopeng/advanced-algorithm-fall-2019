@@ -144,4 +144,8 @@ Given ${\displaystyle m}$ subsets ${\displaystyle S_{1},S_{2},\ldots ,S_{m}\subs
 
   ${\displaystyle {\begin{aligned}{\text{minimize}}&&&\sum _{v\in V,x_v\ge\frac{1}{2}}w_v\\{\text{subject to}}&&&\sum_{v\in e}x_v\ge1,&&e\in E\\&&&x_v\in [0,1],&&v\in V\end{aligned}}}$
 
-- 设$C_{SOL}=\{c_1,c_2,\ldots,c_n\}$，其中$c_i$表示第$i$个进入集合的元素，$a_i=\bigcup_{j=1}^iS_{c_j}$是前$i$个集合的并集，若元素$e\in U$在第$i$次被覆盖，设其价值$price(e)=\frac{w_{c_i}}{\left|a_{i-1}\cap S_{c_{i}}\right|}$，则$\sum_{i\in C}w_i=\sum_{e\in U}price(e)$。
+- 设$P=\sum_{i=1}^nw_i,Q=\sum_{i=1}^nx^*_i$，$X_i=\begin{cases}w_i,&&\frac{x_i^*}{Q}\\0,&&1-\frac{x_i^*}{Q}\end{cases}$
+
+  $Pr[\alpha\ge t]=Pr[e^{\lambda\alpha}\ge e^{\lambda t}]\\\le\frac{E[e^\lambda\frac{SOL}{OPT}]}{e^\lambda t}\\=\frac{\prod_{i=1}^n{E[e^{\frac{\lambda}{P}X_i}]}}{e^{\lambda t}}\\=\frac{\prod_{i=1}^n{e^{\frac{\lambda}{P}w_i*\frac{x^*_i}{Q}+1-\frac{x^*_i}{Q}}}}{e^{\lambda t}}\\\le\frac{\prod_{i=1}^ne^{\frac{x^*_i}{Q}(e^{\frac{\lambda}{P}w_i}-1)}}{e^{\lambda t}}\\=\exp(\sum_{i=1}^n{\frac{x^*_i}{Q}e^{\frac{\lambda}{P}w_i}-1-\lambda t})$
+  
+  
