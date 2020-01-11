@@ -1,6 +1,6 @@
 若$X_1, X_2, ...,X_n$是$\{0,1\}$上互相独立的随机变量，令$\mu=\sum_{i=1}^{n}{E[X_i]}$，那么对$\forall \delta>0$有
 
-1. $\displaystyle Pr[\sum_{i=1}^{n}{X_i}\ge(1+\delta)\mu]\le[\frac{e^{\delta}}{(1+\delta)^{1+\delta}}]^\mu<e^{-\mu*\frac{\delta ^2}{2}}$
+1. $\displaystyle Pr[\sum_{i=1}^{n}{X_i}\ge(1+\delta)\mu]\le[\frac{e^{\delta}}{(1+\delta)^{1+\delta}}]^\mu<e^{-\mu*\frac{\delta ^2}{3}}$
 2. $\displaystyle Pr[\sum_{i=1}^{n}{X_i}\le(1-\delta)\mu]\le[\frac{e^{-\delta}}{(1-\delta)^{1-\delta}}]^\mu<e^{-\mu*\frac{\delta ^2}{2}}$
 
 

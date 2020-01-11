@@ -10,7 +10,7 @@
 
 由马尔可夫不等式，$Pr[Z_n\ge t]=Pr[e^{\lambda Z_n}\ge e^{\lambda t}]\le \frac{E[e^{\lambda Z_n}]}{e^{\lambda t}}$
 
-$E[e^{\lambda Z_n}]=E[E[e^{\lambda Z_n}|X_0,\ldots,X_{n-1}]]=E[E[e^{\lambda Z_{n-1}+Y_n}|X_0,\ldots,X_{n-1}]]=E[e^{\lambda Z_{n-1}}*E[e^{\lambda Y_n}|X_0,\ldots,X_{n-1}]]$
+$E[e^{\lambda Z_n}]=E[E[e^{\lambda Z_n}|X_0,\ldots,X_{n-1}]]=E[E[e^{\lambda Z_{n-1}+\lambda Y_n}|X_0,\ldots,X_{n-1}]]=E[e^{\lambda Z_{n-1}}*E[e^{\lambda Y_n}|X_0,\ldots,X_{n-1}]]$
 
 > 引理
 >
@@ -22,7 +22,7 @@ $E[e^{\lambda Z_n}]=E[E[e^{\lambda Z_n}|X_0,\ldots,X_{n-1}]]=E[E[e^{\lambda Z_{n
 
 由递归关系得$E[e^{\lambda Z_n}]\le\Pi_{i=1}^{n}{e^{\lambda^2c^2_i/2}}=exp(\frac{\lambda^2}{2}\sum_{i=1}^{n}{c_i^2})$
 
-代入$Pr[Z_n\ge t]\le \frac{E[e^{\lambda Z_n}]}{e^{\lambda t}}\le exp(\frac{\lambda^2}{2}\sum_{i=1}^{n}{c_i^2}-\lambda t)$
+代入$Pr[Z_n\ge t]\le \frac{E[e^{\lambda Z_n}]}{e^{\lambda t}}=exp(\frac{\lambda^2}{2}\sum_{i=1}^{n}{c_i^2}-\lambda t)$
 
 选取$\lambda=\frac{t}{\sum_{i=1}^{n}{c_i^2}}$有$exp(\frac{\lambda^2}{2}\sum_{i=1}^{n}{c_i^2}-\lambda t)=exp(-\frac{t^2}{2\sum_{i=1}^{n}{c_i^2}})$
 
