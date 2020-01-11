@@ -1,4 +1,4 @@
-设$X=\sum_{i=1}^nX_i$，$X_1,\ldots,X_n$是独立随机变量且$a_i\le X_i\le b_i,\forall1\le i\le n$。令$\mu=E[X]$，则$Pr[|X-\mu|\ge t]\le 2exp(-\frac{t^2}{2\sum_{i=1}^n{(b_i-a_i)^2}})$
+设$X=\sum_{i=1}^nX_i$，$X_1,\ldots,X_n$是独立随机变量且$a_i\le X_i\le b_i,\forall1\le i\le n$。令$\mu=E[X]$，则$Pr[|X-\mu|\ge t]\le 2exp(-\frac{2t^2}{\sum_{i=1}^n{(b_i-a_i)^2}})$
 
 
 
