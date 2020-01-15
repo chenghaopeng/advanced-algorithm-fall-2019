@@ -18,7 +18,13 @@ Express ${\displaystyle s}$ as a function of ${\displaystyle \delta }$. Make ${\
 
 #### 回答
 
+令$X_1,X_2,\ldots,X_s$为$0/1$独立随机变量，$X_i=I[(1-\epsilon)Z\le\widehat Z_i\le(1+\epsilon)Z]$，$E[X_i]=\frac{3}{4}$，$\mu=E[\sum_{i=1}^s{X_i}]=\sum_{i=1}^s{E[X_i]}=\frac{3}{4}s$。
 
+要使$(1-\epsilon)Z\le X\le(1+\epsilon)Z$成立，需要使序列$\widehat Z_i$中一半以上的元素满足$(1-\epsilon)Z\le\widehat Z_i\le(1+\epsilon)Z$，即$\sum_{i=1}^s{X_i}>\frac{1}{2}s$。
+
+$Pr[(1-\epsilon)Z\le X\le(1+\epsilon)Z]=Pr[\sum_{i=1}^s{X_i}>\frac{1}{2}s]=Pr[\sum_{i=1}^s{X_i}-\frac{3}{4}s>-\frac{1}{4}s]\\=Pr[|\sum_{i=1}^s{X_i}-\mu|<\frac{1}{4}s]\ge^{Chernoff\ Bound}1-\exp(\frac{-2*(\frac{1}{4}s)^2}{s})=1-\exp(-\frac{1}{8}s)$
+
+$\exp(-\frac{1}{8}s)=\delta\rightarrow s=-8\ln(\delta)$
 
 ## Problem 2
 
