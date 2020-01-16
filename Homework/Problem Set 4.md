@@ -63,11 +63,11 @@ Given an undirected graph ${\displaystyle G(V,E)}$ with maximum degree ${\displa
 
    $Pr[v_i与v_1或v_2或\ldots或v_{i-1}相邻]=\frac{(i-1)\Delta}{|S_i|\Delta}=\frac{i-1}{|S_i|}$
 
-   则$Pr[一次随机能够找到解]=(1-Pr[v_2与v_1相邻])\ldots(1-Pr[v_r与v_1或v_2或\ldots或v_{r-1}相邻]])\\=(1-\frac{1}{|S_1|})(1-\frac{2}{|S_2|})\ldots(1-\frac{r-1}{|S_r|})\\\ge(1-\frac{1}{2e\Delta})(1-\frac{2}{2e\Delta})\ldots(1-\frac{r-1}{2e\Delta})\\\ge1-\frac{1+2+\ldots+r-1}{2e\Delta}\\=1-\frac{r(r-1)}{2e\Delta}\\\ge1-\frac{r^2}{2e\Delta}$
+   则$Pr[一次随机能够找到解]=(1-Pr[v_2与v_1相邻])\ldots(1-Pr[v_r与v_1或v_2或\ldots或v_{r-1}相邻]])\\=(1-\frac{1}{|S_1|})(1-\frac{2}{|S_2|})\ldots(1-\frac{r-1}{|S_r|})\\\ge(1-\frac{1}{2e\Delta})(1-\frac{2}{2e\Delta})\ldots(1-\frac{r-1}{2e\Delta})\\\ge1-\frac{1+2+\ldots+r-1}{2e\Delta}\\=1-\frac{r(r-1)}{4e\Delta}\\\ge1-\frac{r^2}{4e\Delta}$
 
-   $Pr[一次随机找不到解]\le\frac{r^2}{2e\Delta}$
+   $Pr[一次随机找不到解]\le\frac{r^2}{4e\Delta}$
 
-   重复运行算法的第$1-3$步$x=\frac{\ln n}{\ln\Delta-2\ln r+\ln 4+1}$次，则$Pr[算法返回错误解]\le(\frac{r^2}{2e\Delta})^x=\frac{1}{n}$，则$Pr[返回正确解]\ge1-\frac{1}{n}$。
+   重复运行算法的第$1-3$步$x=\frac{\ln n}{\ln\Delta-2\ln r+\ln 4+1}$次，则$Pr[算法返回错误解]\le(\frac{r^2}{4e\Delta})^x=\frac{1}{n}$，则$Pr[返回正确解]\ge1-\frac{1}{n}$。
 
 ## Problem 3
 
