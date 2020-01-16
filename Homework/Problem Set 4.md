@@ -87,7 +87,33 @@ Proposition: Given a graph with no degree-1 vertex, it must contain a cycle with
 
 #### 回答
 
+- ${\displaystyle {\begin{aligned}{\text{maximize}}&&&\sum _{C\in\mathcal C}y_{C}\\{\text{subject to}}&&\sum _{\forall C\in\mathcal{C}\ contains\ v}y_{C}&\leq 1,&\forall v&\in V,\\&&y_{C}&\in \{0,1\},&\forall C&\in\mathcal C.\end{aligned}}}$
 
+- 原问题是找最小的反馈集，设为$F$；对偶问题是找最多的不相交环，设环的集合为$R$。
+
+  $\forall r\in R$，去掉$r$中任意一个顶点，形成$G'$，若$G$中不含相交的环，则此时$G'$就是无环的，则$|F|=|R|$。
+
+  若$G$中有相交的环，则$|F|\ge|R|$。
+
+  若$G$中的环全部为相交的环，$\forall r\in R$，则$r$必然与另一个环相交，至少需要移除$2$个顶点。则$G$中至少需要移除的点数$|F|=\sum_{r\in R}2=2|R|$。
+
+  由上，$|R|\le|F|\le2|R|$。
+
+  $SOL=|F|\le2|R|\le2OPT\Rightarrow\frac{SOL}{OPT}\le2$，所以近似比为$2$。
+
+  >**算法**
+  >
+  >初始化：$F = \phi$
+  >
+  >找出$G$中最大的不相交环集$R$
+  >
+  >对于所有$r\in R$：
+  >
+  >​	若$r$不与其他环相交，则取任意$v\in r$，$F \leftarrow F \cap \{v\}$
+  >
+  >​	若$r$与其他环相交，则取相交部分的两个点$u,v$，$F \leftarrow F \cap \{u,v\}$
+  >
+  >返回$F$
 
 ## Problem 4
 
