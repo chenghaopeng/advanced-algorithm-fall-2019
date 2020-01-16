@@ -38,7 +38,36 @@ Given an undirected graph ${\displaystyle G(V,E)}$ with maximum degree ${\displa
 
 #### 回答
 
+1. 设$T\cap S_i=\{v_i\}$，则$T=\{v_1,v_2,\ldots,v_r\}$，必然存在一个 transversal 。
 
+   只需证明存在一个 transversal 是独立集。
+
+   设$A_i(1\le i\le r):从S_i中选出来的点与从其他集合中选出来的点相邻$，目标：$Pr[\bigcap^r_{i=1}\overline A_i]>0$
+
+   每个$A_i$都是独立的，除了与最多$\Delta$个其他事件有关以外
+
+   $Pr[A_i]=\frac{1}{|S_i|}\le\frac{1}{2e\Delta}\le\frac{1}{4\Delta}$，由`Lovász Local Lemma (Erdos-Lovász 1975)`得$Pr[\bigcap^r_{i=1}\overline A_i]>0$
+
+   则存在一个独立集的 transversal 。
+
+2. >**算法**
+   >
+   >1. 随机独立为每个$S_i$选择一个点$v_i$
+   >2. 判断$\{v_1,v_2,\ldots,v_r\}$是否为独立集的 transversal
+   >3. 如果不是则跳转到第1步
+   >4. 输出$T=\{v_1,v_2,\ldots,v_r\}$
+
+   $Pr[v_2与v_1相邻]=\frac{\Delta}{|S_2|\Delta}=\frac{1}{|S_2|}$
+
+   $Pr[v_3与v_1或v_2相邻]=\frac{2\Delta}{|S_3|\Delta}=\frac{2}{|S_3|}$
+
+   $Pr[v_i与v_1或v_2或\ldots或v_{i-1}相邻]=\frac{(i-1)\Delta}{|S_i|\Delta}=\frac{i-1}{|S_i|}$
+
+   则$Pr[一次随机能够找到解]=(1-Pr[v_2与v_1相邻])\ldots(1-Pr[v_r与v_1或v_2或\ldots或v_{r-1}相邻]])\\=(1-\frac{1}{|S_1|})(1-\frac{2}{|S_2|})\ldots(1-\frac{r-1}{|S_r|})\\\ge(1-\frac{1}{2e\Delta})(1-\frac{2}{2e\Delta})\ldots(1-\frac{r-1}{2e\Delta})\\\ge1-\frac{1+2+\ldots+r-1}{2e\Delta}\\=1-\frac{r(r-1)}{2e\Delta}\\\ge1-\frac{r^2}{2e\Delta}$
+
+   $Pr[一次随机找不到解]\le\frac{r^2}{2e\Delta}$
+
+   重复运行算法的第$1-3$步$x=\frac{\ln n}{\ln\Delta-2\ln r+\ln 4+1}$次，则$Pr[算法返回错误解]\le(\frac{r^2}{2e\Delta})^x=\frac{1}{n}$，则$Pr[返回正确解]\ge1-\frac{1}{n}$。
 
 ## Problem 3
 
