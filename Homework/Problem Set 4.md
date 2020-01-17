@@ -148,4 +148,8 @@ Here ${\displaystyle \mu _{v}(+1\mid \sigma (V\setminus \{v\}))}$ is the probabi
 
   $\mu_v(-1|\sigma(V\setminus\{v\}))=\frac{1}{Z}\exp(-\sum_{\{a,b\}\in E}{\beta\sigma(a)\sigma(b)})\\=\frac{1}{Z}(\exp(-\sum_{\{a,b\}\in E,v\notin\{a,b\}}{\beta\sigma(a)\sigma(b)})+\exp(\sum_{\{v,b\}\in E}{\beta\sigma(b)}))$
 
-- 
+- $X\in \{+1,-1\}$任意改变一个元素，生成$X'$，而$X'$也可以改变一个元素。则所有状态是连通的，所以是这条链是 irreducible 。
+  
+  $X$在每一步有一定概率保持不变，即$P(X,X)>0$，所以这条链是 aperiodic 。
+
+  当从$X$开始，$(X_1,X_2,\ldots,X_n)\sim(X_n,X_{n-1},\ldots,X_1)$，则这条链是 reversible 。
