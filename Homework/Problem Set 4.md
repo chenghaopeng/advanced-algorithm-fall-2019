@@ -144,5 +144,8 @@ Here ${\displaystyle \mu _{v}(+1\mid \sigma (V\setminus \{v\}))}$ is the probabi
 
 #### 回答
 
+- $\mu_v(+1|\sigma(V\setminus\{v\}))=\frac{1}{Z}\exp(-\sum_{\{a,b\}\in E}{\beta\sigma(a)\sigma(b)})\\=\frac{1}{Z}(\exp(-\sum_{\{a,b\}\in E,v\notin\{a,b\}}{\beta\sigma(a)\sigma(b)})+\exp(-\sum_{\{v,b\}\in E}{\beta\sigma(b)}) $
 
+  $\mu_v(-1|\sigma(V\setminus\{v\}))=\frac{1}{Z}\exp(-\sum_{\{a,b\}\in E}{\beta\sigma(a)\sigma(b)})\\=\frac{1}{Z}(\exp(-\sum_{\{a,b\}\in E,v\notin\{a,b\}}{\beta\sigma(a)\sigma(b)})+\exp(\sum_{\{v,b\}\in E}{\beta\sigma(b)}))$
 
+- 
